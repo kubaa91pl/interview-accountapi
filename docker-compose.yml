@@ -1,6 +1,14 @@
 version: '3'
 
 services:
+  accountclient:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - FORM3_API=http://accountapi:8080
+    depends_on:
+      - accountapi
   accountapi:
     image: form3tech/interview-accountapi:v1.0.0-46-gb3b6c766
     restart: on-failure

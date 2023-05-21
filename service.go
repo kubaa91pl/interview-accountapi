@@ -24,11 +24,8 @@ func NewClient(baseURL string) *Client {
 }
 
 func (c *Client) Create(acc AccountData) error {
-	data := struct {
-		Data AccountData `json:"data"`
-	}{
-		Data: acc,
-	}
+	var data ResponseNotification
+	data.Data = acc
 
 	var bodyBuf bytes.Buffer
 	err := json.NewEncoder(&bodyBuf).Encode(data)
@@ -59,15 +56,12 @@ func (c *Client) Fetch(id string) (AccountData, error) {
 		log.Fatal(err)
 	}
 
-	var respData struct {
-		Data AccountData `json:"data"`
-	}
-
-	err = json.NewDecoder(resp.Body).Decode(&respData)
+	var responseNotification ResponseNotification
+	err = json.NewDecoder(resp.Body).Decode(&responseNotification)
 	if err != nil {
 		return AccountData{}, err
 	}
-	return respData.Data, nil
+	return responseNotification.Data, nil
 }
 
 func (c *Client) Delete(id string, version string) error {
@@ -83,11 +77,8 @@ func (c *Client) Delete(id string, version string) error {
 		log.Fatal(err)
 	}
 
-	var respData struct {
-		Data AccountData `json:"data"`
-	}
-
-	err = json.NewDecoder(resp.Body).Decode(&respData)
+	var responseNotification ResponseNotification
+	err = json.NewDecoder(resp.Body).Decode(&responseNotification)
 	if err != nil {
 		return err
 	}
