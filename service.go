@@ -48,8 +48,8 @@ func (c *Client) Create(acc AccountData) error {
 	return nil
 }
 
-func (c *Client) Fetch(id string) (AccountData, error) {
-	url := fmt.Sprintf("%s/v1/organisation/accounts/{%s}", c.BaseURL, id)
+func (c *Client) Fetch(id string) (ResponseNotification, error) {
+	url := fmt.Sprintf("%s/v1/organisation/accounts/%s", c.BaseURL, id)
 
 	resp, err := c.HttpClient.Get(url)
 	if err != nil {
@@ -59,13 +59,13 @@ func (c *Client) Fetch(id string) (AccountData, error) {
 	var responseNotification ResponseNotification
 	err = json.NewDecoder(resp.Body).Decode(&responseNotification)
 	if err != nil {
-		return AccountData{}, err
+		return ResponseNotification{}, err
 	}
-	return responseNotification.Data, nil
+	return responseNotification, nil
 }
 
 func (c *Client) Delete(id string, version string) error {
-	url := fmt.Sprintf("%s/v1/organisation/accounts/{%s}?version={%s}", c.BaseURL, id, version)
+	url := fmt.Sprintf("%s/v1/organisation/accounts/%s?version=%s", c.BaseURL, id, version)
 	req, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {
 		return err

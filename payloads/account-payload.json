@@ -1,0 +1,26 @@
+{
+   "data":{
+      "type":"accounts",
+      "id":"a9e3b971-a241-4930-a09f-a7c04bf394fe",
+      "organisation_id":"b6eca650-cf86-4715-b312-fcef0fec1506",
+      "version":0,
+      "attributes":{
+         "name":["John", "Bo"],
+         "country":"GB",
+         "base_currency":"GBP",
+         "account_number":"414268190",
+         "bank_id":"400300",
+         "bank_id_code":"GBDSC",
+         "bic":"NWBKGB22",
+         "iban":"GB11NWBK40030041426819",
+         "account_classification":"Personal",
+         "joint_account":false,
+         "account_matching_opt_out":false,
+         "secondary_identification":"A1B2C3D4",
+         "switched":false,
+         "type":"private",
+         "organisation_id":"34565432",
+         "id":"2345"
+      }
+   }
+}

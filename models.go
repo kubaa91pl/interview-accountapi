@@ -30,5 +30,5 @@ type AccountAttributes struct {
 }
 
 type ResponseNotification struct {
-	Data AccountData `json:"data"`
+	Data AccountData `json:"data,omitempty"`
 }
